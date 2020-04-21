@@ -1,0 +1,12 @@
+type EquityStatics {
+	Symbol: String,
+	Fiftytwoweekhigh: String,
+	Fiftytwoweeklow: String,
+	Fwddividendyield: String,
+	ExDividenddate: String,
+	Payoutratio: String
+}
+
+type Query {
+	Equities(month: String):[EquityStatics]
+}
