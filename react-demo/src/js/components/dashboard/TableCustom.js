@@ -121,7 +121,7 @@ class TableForMonth extends Component {
 }}*/
 
 render(){
-  var currMonth = this.props.month;
+
   const columns = [
     {
       Header:"Symbol",
@@ -144,7 +144,7 @@ render(){
     {
       Header:"Ex-Dividend Date",
       accessor:"ExDividenddate",
-      width:100,
+      width:200,
       background:"silver"
     },    
     {
@@ -156,7 +156,7 @@ render(){
     {
       Header:"Forward Annual Dividend Yield",
       accessor:"Fwddividendyield",
-      width:100,
+      width:300,
       background:"silver"
     }
   ];
@@ -167,8 +167,7 @@ render(){
         showPagination={false}
         className=".ReactTable"
         style={{
-          height: "400px",
-          background: "linear-gradient(315deg, #ffffff 0%, #d7e1ec 74%)"
+          height: "350px"
         }}
       >
   </ReactTable>)

@@ -1,0 +1,11 @@
+type HistDividend{
+	Amount:String,
+	Date:String,
+	Type:String,
+	Data:String
+}
+
+
+extend type Query {
+	HistDividends(symbol: String):[HistDividend]
+}

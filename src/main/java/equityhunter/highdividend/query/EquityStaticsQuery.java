@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 
 import equityhunter.highdividend.dao.entity.EquityStatics;
+import equityhunter.highdividend.dao.entity.HistDividendEventData;
 import equityhunter.highdividend.service.EquityStaticsService;
 
 @Component
@@ -23,4 +24,9 @@ public class EquityStaticsQuery implements GraphQLQueryResolver {
 		_log.info("query the parameter: "+month_);
         return this._service.getEquities(month_);
     }
+	
+	public List<HistDividendEventData> getHistDividends(String symbol_) {
+		_log.info("query the parameter: "+symbol_);
+		return this._service.getHistDividend(symbol_);
+	}
 }
