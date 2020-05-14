@@ -24,5 +24,5 @@ My feeling after complete the intial part of this project:-
 1,JPA is similar as .net entity framework, ORM to database.
 2,There is no difference between web client side and desktop client side, except the message queue, and the low level API.
 3,GraphQL is good thing, only need to provide one REST API as entry point (localhost:8080/graphiql/api)
-4,IOC,AOP from spring boot is the way to maintan and construct the code, as time pass, or change the other langauge(golang), it will go away,
+4,IOC,AOP(dynamic proxy) from spring boot is the way to maintan and construct the code, as time pass, or change the other langauge(golang), it will go away,
 no need spend too much time, just get an idea is enough(think about AtiveX,COM in c++)
