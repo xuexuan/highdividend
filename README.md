@@ -20,6 +20,9 @@ https://docs.aws.amazon.com/AmazonECS/latest/developerguide/docker-basics.html
 Fullstack app include spring boot + reactjs
 https://medium.com/@mukundmadhav/build-and-deploy-react-app-with-spring-boot-and-mysql-6f888eb0c600
 
+How to use graphql with fetch in js
+https://www.prisma.io/tutorials/build-react-graphql-app-with-fetch-ct19#introduction
+
 My feeling after complete the intial part of this project:-
 1,JPA is similar as .net entity framework, ORM to database.
 2,There is no difference between web client side and desktop client side, except the message queue, and the low level API.
