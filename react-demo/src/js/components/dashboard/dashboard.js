@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,18 +12,13 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import TextField from "@material-ui/core/TextField";
 import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import { mainListItems, secondaryListItems } from './Listitems';
-import Orders from './Orders';
+import MainListItems from './Listitems';
 import ReactDOM from "react-dom";
-import TableForMonth from "./TableCustom"
-import HistDividend from "./HistDividends"
+import MainWidget from './MainContent';
 
     function Copyright() {
     return (
@@ -116,83 +111,68 @@ import HistDividend from "./HistDividends"
     },
     }));
 
+    //hook need to use inside function component
     export default function Dashboard() {
-    const classes = useStyles();
-    const [open, setOpen] = React.useState(true);
-    const handleDrawerOpen = () => {
-        setOpen(true);
-    };
-    const handleDrawerClose = () => {
-        setOpen(false);
-    };
-    const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+        const classes = useStyles();
+        const [tabname, setTab] = React.useState('xxxx');
+        const [open, setOpen] = React.useState(true);
+        const handleDrawerOpen = () => {
+            setOpen(true);
+        };
+        const handleDrawerClose = () => {
+            setOpen(false);
+        };
+        const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
-    const [equitySymbol,setEquitySymbol] = React.useState("0005.HK");
-    const handleChange = event => {
-            setEquitySymbol(event.target.value);
-    };
-
-    return (
-        <div className={classes.root}>
-        <CssBaseline />
-        <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
-            <Toolbar className={classes.toolbar}>
-            <IconButton
-                edge="start"
-                color="inherit"
-                aria-label="open drawer"
-                onClick={handleDrawerOpen}
-                className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
+        const [equitySymbol,setEquitySymbol] = React.useState("0005.HK");
+        const handleChange = event => {
+                setEquitySymbol(event.target.value);
+        };
+        return (
+            <div className={classes.root}>
+            <CssBaseline />
+            <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+                <Toolbar className={classes.toolbar}>
+                <IconButton
+                    edge="start"
+                    color="inherit"
+                    aria-label="open drawer"
+                    onClick={handleDrawerOpen}
+                    className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
+                >
+                    <MenuIcon />
+                </IconButton>
+                <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+                    Monthly High Yield Dividend Stock in HKEX
+                </Typography>
+                </Toolbar>
+            </AppBar>
+            <Drawer
+                variant="permanent"
+                classes={{
+                paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+                }}
+                open={open}
             >
-                <MenuIcon />
-            </IconButton>
-            <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-                Monthly High Yield Dividend Stock in HKEX
-            </Typography>
-            </Toolbar>
-        </AppBar>
-        <Drawer
-            variant="permanent"
-            classes={{
-            paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-            }}
-            open={open}
-        >
-            <div className={classes.toolbarIcon}>
-            <IconButton onClick={handleDrawerClose}>
-                <ChevronLeftIcon />
-            </IconButton>
+                <div className={classes.toolbarIcon}>
+                <IconButton onClick={handleDrawerClose}>
+                    <ChevronLeftIcon />
+                </IconButton>
+                </div>
+                <Divider />
+                <List><MainListItems updateWidget={setTab} /></List>
+            </Drawer>
+            <main className={classes.content}>
+                <div className={classes.appBarSpacer} />
+                <Container maxWidth="lg" className={useStyles.container}>
+                <MainWidget tabname={tabname}/>
+                <Box pt={4}>
+                    <Copyright />
+                </Box>
+                </Container>>
+            </main>
             </div>
-            <Divider />
-            <List>{mainListItems}</List>
-        </Drawer>
-        <main className={classes.content}>
-            <div className={classes.appBarSpacer} />
-            <Container maxWidth="lg" className={classes.container}>
-            <Grid container spacing={2}>
-                <Grid item xs={12}>
-                    <Paper className={classes.paper}>
-                        <TableForMonth month="May"/>
-                    </Paper>
-                </Grid>
-                <Grid item xs={12}>
-                    <Paper className={classes.paper}>
-                    <TextField
-                        id="standard-select-stock"
-                        label="Historical dividend"
-                        value={equitySymbol}
-                        onChange={handleChange}/>
-                        <HistDividend symbol={equitySymbol}/>
-                    </Paper>
-                </Grid>
-            </Grid>
-            <Box pt={4}>
-                <Copyright />
-            </Box>
-            </Container>
-        </main>
-        </div>
-    );
+        );
     }
 
 
