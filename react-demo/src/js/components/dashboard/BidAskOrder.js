@@ -37,7 +37,7 @@ export default function BidAskOrder(props){
             showPagination={false}
             className=".ReactTable"
             style={{
-              height: "350px"
+              height: "700px"
             }}
           >
       </ReactTable>)

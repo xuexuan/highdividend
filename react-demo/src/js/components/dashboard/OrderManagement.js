@@ -102,31 +102,30 @@ class OrderManagement extends Component{
             }));
     
         return (
-                <Grid container spacing={3}>
-                    <Grid container item xs={10} spacing={2}>
+                <Grid container  spacing={2}>
+                     <Grid container  spacing={4}>
                         <Grid item xs={10}>
+                            <form>
+                                <label style={{ fontSize: '2rem' }}>coin price: {this.state.price}</label>
+                            </form>
+                        </Grid>
+                    </Grid>
+                    <Grid container spacing={2}>
+                        <Grid item xs={12}>
                             <Paper className={useStyles.paper}>
                                 <OrderInput sendMessage={this.sendOrder}/>
                             </Paper>
                         </Grid>
                     </Grid>
-                    <Grid container item xs={10} spacing={2}>
-                        <Grid item xs={10}>
-                            <form>
-                                <label>coin price: {this.state.price}</label>
-                            </form>
-                        </Grid>
-                    </Grid>
-                    <Grid container item xs={10} spacing={2}>
-                        <Grid item xs={10}>
-                            <FormLabel>{this.state.price}</FormLabel>
+                    <Grid container spacing={5}>
+                        <Grid item xs={5}>
+                            <FormLabel>Market orders</FormLabel>
                             <Paper className={useStyles.paper}>
                                 <BidAskOrder orders={this.state.orders}/>
                             </Paper>
                         </Grid>
-                    </Grid>
-                    <Grid container item xs={10} spacing={2}>
-                        <Grid item xs={10}>
+                        <Grid item xs={7}>
+                            <FormLabel>Your portfolio</FormLabel>
                             <Paper className={useStyles.paper}>
                                 <UserPortfolio portfolio={this.state.portfolio}/>
                             </Paper>

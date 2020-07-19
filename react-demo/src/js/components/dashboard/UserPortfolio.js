@@ -42,8 +42,6 @@ export default function UserPortfolio(props){
           }
       ];
 
-      console.log("rendering userportfolio");
-      console.log(props.portfolio);
       return (
           <ReactTable
             columns={columns}
@@ -51,7 +49,7 @@ export default function UserPortfolio(props){
             showPagination={false}
             className=".ReactTable"
             style={{
-              height: "350px"
+              height: "700px"
             }}
           >
       </ReactTable>)
