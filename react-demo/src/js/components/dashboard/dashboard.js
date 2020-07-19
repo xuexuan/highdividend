@@ -10,12 +10,9 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
-import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import MainListItems from './Listitems';
 import ReactDOM from "react-dom";
 import MainWidget from './MainContent';
@@ -112,9 +109,10 @@ import MainWidget from './MainContent';
     }));
 
     //hook need to use inside function component
-    export default function Dashboard() {
+    export default function Dashboard(props) {
         const classes = useStyles();
-        const [tabname, setTab] = React.useState('xxxx');
+        const [tabname, setTab] = React.useState('marketdata');
+        const [titlename, setTitlename] = React.useState('Monthly High Yield Dividend Stock in HKEX');
         const [open, setOpen] = React.useState(true);
         const handleDrawerOpen = () => {
             setOpen(true);
@@ -122,11 +120,10 @@ import MainWidget from './MainContent';
         const handleDrawerClose = () => {
             setOpen(false);
         };
-        const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
-        const [equitySymbol,setEquitySymbol] = React.useState("0005.HK");
-        const handleChange = event => {
-                setEquitySymbol(event.target.value);
+        //var username = "";
+        const setUserNameEvent = event =>{
+                props.username = event.target.value;
         };
         return (
             <div className={classes.root}>
@@ -143,7 +140,7 @@ import MainWidget from './MainContent';
                     <MenuIcon />
                 </IconButton>
                 <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-                    Monthly High Yield Dividend Stock in HKEX
+                    {titlename}
                 </Typography>
                 </Toolbar>
             </AppBar>
@@ -160,12 +157,12 @@ import MainWidget from './MainContent';
                 </IconButton>
                 </div>
                 <Divider />
-                <List><MainListItems updateWidget={setTab} /></List>
+                <List><MainListItems updateWidget={setTab} setTitleName={setTitlename} setUserName={setUserNameEvent}/></List>
             </Drawer>
             <main className={classes.content}>
                 <div className={classes.appBarSpacer} />
                 <Container maxWidth="lg" className={useStyles.container}>
-                <MainWidget tabname={tabname}/>
+                <MainWidget tabname={tabname} username={props.username}/>
                 <Box pt={4}>
                     <Copyright />
                 </Box>

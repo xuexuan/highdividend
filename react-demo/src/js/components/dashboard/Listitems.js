@@ -2,48 +2,55 @@ import React, {useState, Component} from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import ListSubheader from '@material-ui/core/ListSubheader';
 import DashboardIcon from '@material-ui/icons/Dashboard';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import PeopleIcon from '@material-ui/icons/People';
-import BarChartIcon from '@material-ui/icons/BarChart';
-import LayersIcon from '@material-ui/icons/Layers';
 import AssignmentIcon from '@material-ui/icons/Assignment';
-import Mkdataboard from './marketdataboard';
-import { render } from 'react-dom';
-import HistDividend from "./HistDividends"
+import UserNameFormDialog from "./UserNameForm"
 
 class MainListItems extends Component{
 
   constructor(props){
     super(props);
+    this.state = {open:false};
     console.log(props.updateWidget);
   }
 
   render(){
+    const setClose = event=>{
+      this.setState({open:false});
+      this.props.updateWidget('Trading');
+    };
+
     return(<div>
+      <UserNameFormDialog open={this.state.open} setUserName={this.props.setUserName} handleClose={setClose}/>
       <ListItem button 
-      onClick={()=>this.props.updateWidget('marketdata')}>
+      onClick={()=>{
+        this.props.updateWidget('marketdata'); 
+        this.props.setTitleName("Monthly High Yield Dividend Stock in HKEX");
+        }}>
         <ListItemIcon>
           <DashboardIcon />
         </ListItemIcon>
         <ListItemText primary="MarketBoard" />
       </ListItem>
-      <ListItem button
+      {/* <ListItem button
       onClick={()=>this.props.updateWidget('marketdata')}>
         <ListItemIcon>
           <AssignmentIcon />
         </ListItemIcon>
         <ListItemText primary="BackTester" />
-      </ListItem>
+      </ListItem> */}
       <ListItem button
-      onClick={()=>this.props.updateWidget('orderbook')}>
+      onClick={()=>{
+        this.setState({open:true});
+        this.props.setTitleName("Virtual coin trading board");
+        }}>
         <ListItemIcon>
           <AssignmentIcon />
         </ListItemIcon>
-        <ListItemText primary="BuySellOrders" />
+        <ListItemText primary="Trading"/>
       </ListItem>
-      <ListItem button
+      {/* <ListItem button
       onClick={()=>this.props.updateWidget('marketdata')}>
         <ListItemIcon>
           <AssignmentIcon />
@@ -56,7 +63,7 @@ class MainListItems extends Component{
           <PeopleIcon />
         </ListItemIcon>
         <ListItemText primary="Discussion" />
-      </ListItem>
+      </ListItem> */}
     </div>)
   }
 }
