@@ -103,21 +103,21 @@ class OrderManagement extends Component{
     
         return (
                 <Grid container spacing={3}>
-                    <Grid container justify="center" item xs={10} spacing={2}>
+                    <Grid container item xs={10} spacing={2}>
                         <Grid item xs={10}>
                             <Paper className={useStyles.paper}>
                                 <OrderInput sendMessage={this.sendOrder}/>
                             </Paper>
                         </Grid>
                     </Grid>
-                    <Grid container justify="center" item xs={10} spacing={2}>
+                    <Grid container item xs={10} spacing={2}>
                         <Grid item xs={10}>
                             <form>
                                 <label>coin price: {this.state.price}</label>
                             </form>
                         </Grid>
                     </Grid>
-                    <Grid container  justify="center" item xs={10} spacing={2}>
+                    <Grid container item xs={10} spacing={2}>
                         <Grid item xs={10}>
                             <FormLabel>{this.state.price}</FormLabel>
                             <Paper className={useStyles.paper}>
@@ -125,7 +125,7 @@ class OrderManagement extends Component{
                             </Paper>
                         </Grid>
                     </Grid>
-                    <Grid container justify="center" item xs={10} spacing={2}>
+                    <Grid container item xs={10} spacing={2}>
                         <Grid item xs={10}>
                             <Paper className={useStyles.paper}>
                                 <UserPortfolio portfolio={this.state.portfolio}/>
